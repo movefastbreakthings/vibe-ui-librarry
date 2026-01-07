@@ -4,7 +4,6 @@ var styles = require('@mui/material/styles');
 var jsxRuntime = require('react/jsx-runtime');
 var react = require('react');
 var material = require('@mui/material');
-var iconsMaterial = require('@mui/icons-material');
 
 // Knalliges Pink als Hauptakzentfarbe
 const VIBE_PINK = {
@@ -928,9 +927,3 @@ exports.vibePink = vibePink;
 exports.vibePurple = vibePurple;
 exports.vibeTheme = vibeTheme;
 exports.vibeThemeOptions = vibeThemeOptions;
-Object.keys(iconsMaterial).forEach(function (k) {
-    if (k !== 'default' && !Object.prototype.hasOwnProperty.call(exports, k)) Object.defineProperty(exports, k, {
-        enumerable: true,
-        get: function () { return iconsMaterial[k]; }
-    });
-});

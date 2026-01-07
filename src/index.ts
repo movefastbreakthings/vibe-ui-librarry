@@ -244,6 +244,7 @@ export type {
 } from "@mui/material";
 
 // ---------------------------------------------------------------------------
-// Re-export Material Icons
+// Material Icons - Import directly from @mui/icons-material
 // ---------------------------------------------------------------------------
-export * from "@mui/icons-material";
+// Icons are NOT re-exported to avoid bundle size issues.
+// Import icons directly: import { Favorite, Star } from '@mui/icons-material';
