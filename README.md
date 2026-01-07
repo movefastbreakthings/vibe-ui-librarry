@@ -140,6 +140,23 @@ import {
 | 600 | `#8e24aa` |
 | 700 | `#7b1fa2` |
 
+## 🤖 AI/KI-Tools Integration
+
+Verwende den mitgelieferten Prompt, damit KI-Tools (ChatGPT, Claude, Cursor, etc.) automatisch diese Library nutzen:
+
+**[📋 AI_PROMPT.md](./AI_PROMPT.md)** - Kopiere diesen als System-Prompt oder Kontext
+
+### Kurz-Prompt (zum Kopieren)
+
+```
+Verwende die vibe-ui-library (basiert auf Material UI mit Pink-Theme).
+Import: import { VibeProvider, Button, Typography, Box, ... } from 'vibe-ui-library'
+Alle Icons: import { Favorite, Star, Home, ... } from 'vibe-ui-library'
+Wrapper: <VibeProvider>{children}</VibeProvider>
+Primary Color: Pink (#ff0080)
+Kein eigenes CSS - nutze sx prop!
+```
+
 ## 🏃 Demo lokal starten
 
 ```bash
