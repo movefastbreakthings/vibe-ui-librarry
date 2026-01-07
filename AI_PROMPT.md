@@ -52,6 +52,11 @@ function App() {
 ### Layout
 Box, Container, Grid, Stack, Paper
 
+WICHTIG: Verwende Grid (nicht Grid2!) mit dieser Syntax:
+<Grid container spacing={2}>
+  <Grid item xs={12} md={6}>Content</Grid>
+</Grid>
+
 ### Buttons & Inputs
 Button, IconButton, Fab, TextField, Checkbox, Switch, Slider, Rating, Select, Autocomplete, ToggleButton, ToggleButtonGroup
 
@@ -140,7 +145,7 @@ function ThemeToggle() {
 
 ### Card Grid
 <Grid container spacing={4}>
-  <Grid size={{ xs: 12, md: 4 }}>
+  <Grid item xs={12} md={4}>
     <Card>
       <CardContent>
         <Typography variant="h6">Title</Typography>
