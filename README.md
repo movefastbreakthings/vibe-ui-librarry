@@ -8,13 +8,13 @@ Eine lebendige UI-Library basierend auf [Material UI](https://mui.com/) mit eine
 
 ## 🚀 Live Demo
 
-**[👉 Demo ansehen](https://movefastbreakthings.github.io/vibe-ui-librarry/)**
+**[👉 Demo ansehen](https://movefastbreakthings.github.io/vibe-ui-library/)**
 
 ## 📦 Installation
 
 ```bash
 # Von GitHub installieren
-npm install git+https://github.com/movefastbreakthings/vibe-ui-librarry.git
+npm install git+https://github.com/movefastbreakthings/vibe-ui-library.git
 ```
 
 ## 🎨 Features
@@ -161,8 +161,8 @@ Kein eigenes CSS - nutze sx prop!
 
 ```bash
 # Repository klonen
-git clone https://github.com/movefastbreakthings/vibe-ui-librarry.git
-cd vibe-ui-librarry
+git clone https://github.com/movefastbreakthings/vibe-ui-library.git
+cd vibe-ui-library
 
 # Dependencies installieren
 npm install
