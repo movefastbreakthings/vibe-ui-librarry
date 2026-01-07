@@ -501,13 +501,17 @@ function DemoContent() {
                   </Box>
                 </Stack>
               </CardContent>
-              <CardActions>
+              <CardActions sx={{ px: 2, pb: 2 }}>
                 <Button
                   variant="contained"
                   sx={{
-                    bgcolor: 'white',
+                    bgcolor: 'white !important',
                     color: 'primary.main',
-                    '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' },
+                    fontWeight: 600,
+                    '&:hover': { 
+                      bgcolor: 'rgba(255,255,255,0.9) !important',
+                      transform: 'scale(1.02)',
+                    },
                   }}
                   onClick={() => setSnackbarOpen(true)}
                 >
