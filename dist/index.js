@@ -1,369 +1,401 @@
-import { createTheme } from '@mui/material/styles';
-import { jsx, jsxs } from 'react/jsx-runtime';
-import { createContext, useState, useMemo, useContext } from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
-export { Accordion, AccordionActions, AccordionDetails, AccordionSummary, Alert, AlertTitle, AppBar, Autocomplete, Avatar, AvatarGroup, Backdrop, Badge, BottomNavigation, BottomNavigationAction, Box, Breadcrumbs, Button, ButtonGroup, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Checkbox, Chip, CircularProgress, ClickAwayListener, Collapse, Container, CssBaseline, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Drawer, Fab, Fade, FilledInput, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, GlobalStyles, Grid, Grow, Icon, IconButton, ImageList, ImageListItem, ImageListItemBar, Input, InputAdornment, InputBase, InputLabel, LinearProgress, Link, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader, Menu, MenuItem, MenuList, MobileStepper, Modal, NativeSelect, NoSsr, OutlinedInput, Pagination, PaginationItem, Paper, Popover, Popper, Portal, Radio, RadioGroup, Rating, Select, Skeleton, Slide, Slider, Snackbar, SnackbarContent, SpeedDial, SpeedDialAction, SpeedDialIcon, Stack, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper, SvgIcon, Switch, Tab, TabScrollButton, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, Tabs, TextField, TextareaAutosize, ThemeProvider, ToggleButton, ToggleButtonGroup, Toolbar, Tooltip, Typography, Zoom, alpha, createTheme, darken, emphasize, getContrastRatio, lighten, styled, useColorScheme, useMediaQuery, useScrollTrigger, useTheme, useThemeProps } from '@mui/material';
+import { jsx } from 'react/jsx-runtime';
+import { ThemeProvider } from '@material-tailwind/react';
+export { Accordion, AccordionBody, AccordionHeader, Alert, Avatar, Badge, Breadcrumbs, Button, ButtonGroup, Card, CardBody, CardFooter, CardHeader, Carousel, Checkbox, Chip, Collapse, Dialog, DialogBody, DialogFooter, DialogHeader, Drawer, IconButton, Input, List, ListItem, ListItemPrefix, ListItemSuffix, Menu, MenuHandler, MenuItem, MenuList, MobileNav, Navbar, Option, Popover, PopoverContent, PopoverHandler, Progress, Radio, Rating, Select, Slider, SpeedDial, SpeedDialAction, SpeedDialContent, SpeedDialHandler, Spinner, Step, Stepper, Switch, Tab, TabPanel, Tabs, TabsBody, TabsHeader, Textarea, ThemeProvider, Timeline, TimelineBody, TimelineConnector, TimelineHeader, TimelineIcon, TimelineItem, Tooltip, Typography } from '@material-tailwind/react';
 
-// Knalliges Pink als Hauptakzentfarbe
-const VIBE_PINK = {
-    50: '#fce4ec',
-    100: '#f8bbd9',
-    200: '#f48fb1',
-    300: '#f06292',
-    400: '#ec407a',
-    500: '#ff0080', // Hauptfarbe - knalliges Pink/Magenta
-    600: '#e91e63',
-    700: '#d81b60',
-    800: '#c2185b',
-    900: '#ad1457',
-    A100: '#ff80ab',
-    A200: '#ff4081',
-    A400: '#ff0080',
-    A700: '#c51162',
-};
-// Sekundärfarbe - Electric Purple für Kontrast
-const VIBE_PURPLE = {
-    50: '#f3e5f5',
-    100: '#e1bee7',
-    200: '#ce93d8',
-    300: '#ba68c8',
-    400: '#ab47bc',
-    500: '#9c27b0',
-    600: '#8e24aa',
-    700: '#7b1fa2',
-    800: '#6a1b9a',
-    900: '#4a148c',
-    A100: '#ea80fc',
-    A200: '#e040fb',
-    A400: '#d500f9',
-    A700: '#aa00ff',
-};
-const vibeThemeOptions = {
-    palette: {
-        primary: {
-            main: VIBE_PINK[500],
-            light: VIBE_PINK[300],
-            dark: VIBE_PINK[700],
-            contrastText: '#ffffff',
-        },
-        secondary: {
-            main: VIBE_PURPLE[500],
-            light: VIBE_PURPLE[300],
-            dark: VIBE_PURPLE[700],
-            contrastText: '#ffffff',
-        },
-        error: {
-            main: '#ff1744',
-        },
-        warning: {
-            main: '#ff9100',
-        },
-        info: {
-            main: '#00b0ff',
-        },
-        success: {
-            main: '#00e676',
-        },
-        background: {
-            default: '#fafafa',
-            paper: '#ffffff',
-        },
-    },
-    typography: {
-        fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-        h1: {
-            fontWeight: 700,
-        },
-        h2: {
-            fontWeight: 700,
-        },
-        h3: {
-            fontWeight: 600,
-        },
-        h4: {
-            fontWeight: 600,
-        },
-        h5: {
-            fontWeight: 600,
-        },
-        h6: {
-            fontWeight: 600,
-        },
-        button: {
-            fontWeight: 600,
-            textTransform: 'none',
-        },
-    },
-    shape: {
-        borderRadius: 12,
-    },
-    components: {
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 8,
-                    padding: '10px 24px',
-                    boxShadow: 'none',
-                    '&:hover': {
-                        boxShadow: '0 4px 12px rgba(255, 0, 128, 0.3)',
-                    },
-                },
-                containedPrimary: {
-                    background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-                    '&:hover': {
-                        background: `linear-gradient(135deg, ${VIBE_PINK[400]} 0%, ${VIBE_PINK[500]} 100%)`,
-                    },
-                },
-            },
-        },
-        MuiCard: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 16,
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-                },
-            },
-        },
-        MuiChip: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 8,
-                },
-                colorPrimary: {
-                    background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-                },
-            },
-        },
-        MuiTextField: {
-            styleOverrides: {
-                root: {
-                    '& .MuiOutlinedInput-root': {
-                        borderRadius: 8,
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: VIBE_PINK[500],
-                            borderWidth: 2,
-                        },
-                    },
-                },
-            },
-        },
-        MuiFab: {
-            styleOverrides: {
-                primary: {
-                    background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-                    '&:hover': {
-                        background: `linear-gradient(135deg, ${VIBE_PINK[400]} 0%, ${VIBE_PINK[500]} 100%)`,
-                    },
-                },
-            },
-        },
-        MuiSwitch: {
-            styleOverrides: {
-                switchBase: {
-                    '&.Mui-checked': {
-                        color: VIBE_PINK[500],
-                        '& + .MuiSwitch-track': {
-                            backgroundColor: VIBE_PINK[500],
-                        },
-                    },
-                },
-            },
-        },
-        MuiCheckbox: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-checked': {
-                        color: VIBE_PINK[500],
-                    },
-                },
-            },
-        },
-        MuiRadio: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-checked': {
-                        color: VIBE_PINK[500],
-                    },
-                },
-            },
-        },
-        MuiSlider: {
-            styleOverrides: {
-                root: {
-                    color: VIBE_PINK[500],
-                },
-                thumb: {
-                    '&:hover, &.Mui-focusVisible': {
-                        boxShadow: `0 0 0 8px rgba(255, 0, 128, 0.16)`,
-                    },
-                },
-            },
-        },
-        MuiLinearProgress: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 4,
-                },
-                barColorPrimary: {
-                    background: `linear-gradient(90deg, ${VIBE_PINK[500]} 0%, ${VIBE_PURPLE[500]} 100%)`,
-                },
-            },
-        },
-        MuiCircularProgress: {
-            styleOverrides: {
-                colorPrimary: {
-                    color: VIBE_PINK[500],
-                },
-            },
-        },
-        MuiTabs: {
-            styleOverrides: {
-                indicator: {
-                    backgroundColor: VIBE_PINK[500],
-                    height: 3,
-                    borderRadius: 2,
-                },
-            },
-        },
-        MuiTab: {
-            styleOverrides: {
-                root: {
-                    '&.Mui-selected': {
-                        color: VIBE_PINK[500],
-                    },
-                },
-            },
-        },
-        MuiLink: {
-            styleOverrides: {
-                root: {
-                    color: VIBE_PINK[500],
-                    '&:hover': {
-                        color: VIBE_PINK[700],
-                    },
-                },
-            },
-        },
-        MuiAlert: {
-            styleOverrides: {
-                root: {
-                    borderRadius: 12,
-                },
-            },
-        },
-        MuiDialog: {
-            styleOverrides: {
-                paper: {
-                    borderRadius: 20,
-                },
-            },
-        },
-        MuiTooltip: {
-            styleOverrides: {
-                tooltip: {
-                    borderRadius: 8,
-                    backgroundColor: 'rgba(0, 0, 0, 0.87)',
-                },
-            },
-        },
-        MuiBadge: {
-            styleOverrides: {
-                colorPrimary: {
-                    backgroundColor: VIBE_PINK[500],
-                },
-            },
-        },
-    },
-};
-// Dark Theme Variante
-const vibeDarkThemeOptions = {
-    ...vibeThemeOptions,
-    palette: {
-        mode: 'dark',
-        primary: {
-            main: VIBE_PINK[400],
-            light: VIBE_PINK[200],
-            dark: VIBE_PINK[600],
-            contrastText: '#ffffff',
-        },
-        secondary: {
-            main: VIBE_PURPLE[400],
-            light: VIBE_PURPLE[200],
-            dark: VIBE_PURPLE[600],
-            contrastText: '#ffffff',
-        },
-        error: {
-            main: '#ff5252',
-        },
-        warning: {
-            main: '#ffab40',
-        },
-        info: {
-            main: '#40c4ff',
-        },
-        success: {
-            main: '#69f0ae',
-        },
-        background: {
-            default: '#0a0a0a',
-            paper: '#1a1a1a',
-        },
-        text: {
-            primary: '#ffffff',
-            secondary: 'rgba(255, 255, 255, 0.7)',
-        },
-    },
-};
-// Erstelle die Themes
-const vibeTheme = createTheme(vibeThemeOptions);
-const vibeDarkTheme = createTheme(vibeDarkThemeOptions);
-// Export der Pink-Farben für direkten Zugriff
-const vibePink = VIBE_PINK;
-const vibePurple = VIBE_PURPLE;
-
-const VibeContext = createContext(undefined);
 /**
- * VibeUIProvider - Wrapper-Komponente für die Vibe UI Library
- *
- * Stellt das Theme bereit und ermöglicht das Umschalten zwischen Light/Dark Mode.
+ * Vibe Theme for Material Tailwind
+ * Primary Color: #ff0080 (Vibrant Pink)
+ * Secondary Color: #9c27b0 (Electric Purple)
+ */
+const vibeTheme = {
+    button: {
+        defaultProps: {
+            color: 'pink',
+            ripple: true,
+        },
+        valid: {
+            colors: [
+                'pink',
+                'purple',
+                'white',
+                'blue-gray',
+                'gray',
+                'brown',
+                'deep-orange',
+                'orange',
+                'amber',
+                'yellow',
+                'lime',
+                'light-green',
+                'green',
+                'teal',
+                'cyan',
+                'light-blue',
+                'blue',
+                'indigo',
+                'deep-purple',
+                'red',
+            ],
+        },
+        styles: {
+            variants: {
+                filled: {
+                    pink: {
+                        background: 'bg-[#ff0080]',
+                        color: 'text-white',
+                        shadow: 'shadow-md shadow-pink-500/20',
+                        hover: 'hover:shadow-lg hover:shadow-pink-500/40',
+                        focus: 'focus:opacity-[0.85] focus:shadow-none',
+                        active: 'active:opacity-[0.85] active:shadow-none',
+                    },
+                    purple: {
+                        background: 'bg-[#9c27b0]',
+                        color: 'text-white',
+                        shadow: 'shadow-md shadow-purple-500/20',
+                        hover: 'hover:shadow-lg hover:shadow-purple-500/40',
+                        focus: 'focus:opacity-[0.85] focus:shadow-none',
+                        active: 'active:opacity-[0.85] active:shadow-none',
+                    },
+                },
+                outlined: {
+                    pink: {
+                        border: 'border border-[#ff0080]',
+                        color: 'text-[#ff0080]',
+                        hover: 'hover:opacity-75',
+                        focus: 'focus:ring focus:ring-pink-200',
+                        active: 'active:opacity-[0.85]',
+                    },
+                    purple: {
+                        border: 'border border-[#9c27b0]',
+                        color: 'text-[#9c27b0]',
+                        hover: 'hover:opacity-75',
+                        focus: 'focus:ring focus:ring-purple-200',
+                        active: 'active:opacity-[0.85]',
+                    },
+                },
+                gradient: {
+                    pink: {
+                        background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+                        color: 'text-white',
+                        shadow: 'shadow-md shadow-pink-500/20',
+                        hover: 'hover:shadow-lg hover:shadow-pink-500/40',
+                        active: 'active:opacity-[0.85]',
+                    },
+                    purple: {
+                        background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+                        color: 'text-white',
+                        shadow: 'shadow-md shadow-purple-500/20',
+                        hover: 'hover:shadow-lg hover:shadow-purple-500/40',
+                        active: 'active:opacity-[0.85]',
+                    },
+                },
+                text: {
+                    pink: {
+                        color: 'text-[#ff0080]',
+                        hover: 'hover:bg-pink-500/10',
+                        active: 'active:bg-pink-500/30',
+                    },
+                    purple: {
+                        color: 'text-[#9c27b0]',
+                        hover: 'hover:bg-purple-500/10',
+                        active: 'active:bg-purple-500/30',
+                    },
+                },
+            },
+        },
+    },
+    card: {
+        defaultProps: {
+            variant: 'filled',
+            color: 'white',
+            shadow: true,
+        },
+        styles: {
+            base: {
+                initial: {
+                    borderRadius: 'rounded-xl',
+                },
+            },
+        },
+    },
+    input: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            variants: {
+                outlined: {
+                    pink: {
+                        input: {
+                            borderColor: 'border-blue-gray-200',
+                            borderColorFocused: 'focus:border-[#ff0080]',
+                        },
+                        label: {
+                            color: 'text-blue-gray-400 peer-focus:text-[#ff0080]',
+                            after: {
+                                borderColor: 'after:border-[#ff0080]',
+                            },
+                        },
+                    },
+                },
+                standard: {
+                    pink: {
+                        input: {
+                            borderColor: 'border-blue-gray-200',
+                            borderColorFocused: 'focus:border-[#ff0080]',
+                        },
+                        label: {
+                            color: 'text-blue-gray-500 peer-focus:text-[#ff0080]',
+                            after: {
+                                borderColor: 'after:border-[#ff0080]',
+                            },
+                        },
+                    },
+                },
+                static: {
+                    pink: {
+                        input: {
+                            borderColor: 'border-blue-gray-200',
+                            borderColorFocused: 'focus:border-[#ff0080]',
+                        },
+                        label: {
+                            color: 'text-blue-gray-500 peer-focus:text-[#ff0080]',
+                            after: {
+                                borderColor: 'after:border-[#ff0080]',
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+    checkbox: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            colors: {
+                pink: {
+                    background: 'checked:bg-[#ff0080]',
+                    border: 'checked:border-[#ff0080]',
+                    before: 'checked:before:bg-[#ff0080]',
+                },
+                purple: {
+                    background: 'checked:bg-[#9c27b0]',
+                    border: 'checked:border-[#9c27b0]',
+                    before: 'checked:before:bg-[#9c27b0]',
+                },
+            },
+        },
+    },
+    switch: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            colors: {
+                pink: {
+                    input: 'checked:bg-[#ff0080]',
+                    circle: 'peer-checked:border-[#ff0080]',
+                    before: 'peer-checked:before:bg-[#ff0080]',
+                },
+                purple: {
+                    input: 'checked:bg-[#9c27b0]',
+                    circle: 'peer-checked:border-[#9c27b0]',
+                    before: 'peer-checked:before:bg-[#9c27b0]',
+                },
+            },
+        },
+    },
+    radio: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            colors: {
+                pink: {
+                    color: 'text-[#ff0080]',
+                    border: 'checked:border-[#ff0080]',
+                    before: 'checked:before:bg-[#ff0080]',
+                },
+                purple: {
+                    color: 'text-[#9c27b0]',
+                    border: 'checked:border-[#9c27b0]',
+                    before: 'checked:before:bg-[#9c27b0]',
+                },
+            },
+        },
+    },
+    chip: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            variants: {
+                filled: {
+                    pink: {
+                        background: 'bg-[#ff0080]',
+                        color: 'text-white',
+                    },
+                    purple: {
+                        background: 'bg-[#9c27b0]',
+                        color: 'text-white',
+                    },
+                },
+                gradient: {
+                    pink: {
+                        background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+                        color: 'text-white',
+                    },
+                    purple: {
+                        background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+                        color: 'text-white',
+                    },
+                },
+                outlined: {
+                    pink: {
+                        border: 'border border-[#ff0080]',
+                        color: 'text-[#ff0080]',
+                    },
+                    purple: {
+                        border: 'border border-[#9c27b0]',
+                        color: 'text-[#9c27b0]',
+                    },
+                },
+                ghost: {
+                    pink: {
+                        background: 'bg-[#ff0080]/20',
+                        color: 'text-[#ff0080]',
+                    },
+                    purple: {
+                        background: 'bg-[#9c27b0]/20',
+                        color: 'text-[#9c27b0]',
+                    },
+                },
+            },
+        },
+    },
+    spinner: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            colors: {
+                pink: {
+                    color: 'text-[#ff0080]',
+                },
+                purple: {
+                    color: 'text-[#9c27b0]',
+                },
+            },
+        },
+    },
+    progress: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            colors: {
+                pink: {
+                    background: 'bg-[#ff0080]',
+                },
+                purple: {
+                    background: 'bg-[#9c27b0]',
+                },
+            },
+        },
+    },
+    tabs: {
+        defaultProps: {},
+        styles: {
+            base: {
+                tab: {
+                    initial: {
+                        color: 'text-blue-gray-900',
+                    },
+                },
+                indicator: {
+                    bg: 'bg-[#ff0080]',
+                },
+            },
+        },
+    },
+    alert: {
+        defaultProps: {
+            color: 'pink',
+        },
+        styles: {
+            variants: {
+                filled: {
+                    pink: {
+                        background: 'bg-[#ff0080]',
+                        color: 'text-white',
+                    },
+                    purple: {
+                        background: 'bg-[#9c27b0]',
+                        color: 'text-white',
+                    },
+                },
+                gradient: {
+                    pink: {
+                        background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+                        color: 'text-white',
+                    },
+                    purple: {
+                        background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+                        color: 'text-white',
+                    },
+                },
+                outlined: {
+                    pink: {
+                        border: 'border border-[#ff0080]',
+                        color: 'text-[#ff0080]',
+                    },
+                    purple: {
+                        border: 'border border-[#9c27b0]',
+                        color: 'text-[#9c27b0]',
+                    },
+                },
+                ghost: {
+                    pink: {
+                        background: 'bg-[#ff0080]/20',
+                        color: 'text-[#ff0080]',
+                    },
+                    purple: {
+                        background: 'bg-[#9c27b0]/20',
+                        color: 'text-[#9c27b0]',
+                    },
+                },
+            },
+        },
+    },
+};
+// Color palette export for documentation
+const vibeColors = {
+    primary: '#ff0080',
+    secondary: '#9c27b0',
+    primaryLight: '#ff6eb4',
+    secondaryLight: '#ce93d8',
+};
+
+/**
+ * VibeUIProvider - Wraps your app with the Vibe theme
  *
  * @example
  * ```tsx
- * import { VibeUIProvider, Button } from 'vibe-ui-library';
+ * import { VibeUIProvider } from 'vibe-tailwind-library';
  *
  * function App() {
  *   return (
- *     <VibeUIProvider defaultMode="light">
- *       <Button variant="contained">Vibe Button</Button>
+ *     <VibeUIProvider>
+ *       <YourApp />
  *     </VibeUIProvider>
  *   );
  * }
  * ```
  */
-const VibeUIProvider = ({ children, defaultMode = "light", disableCssBaseline = false, }) => {
-    const [mode, setMode] = useState(defaultMode);
-    const toggleMode = () => {
-        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-    };
-    const theme = useMemo(() => {
-        return mode === "light" ? vibeTheme : vibeDarkTheme;
-    }, [mode]);
-    const contextValue = useMemo(() => ({
-        mode,
-        toggleMode,
-        setMode,
-    }), [mode]);
-    return (jsx(VibeContext.Provider, { value: contextValue, children: jsxs(ThemeProvider, { theme: theme, children: [!disableCssBaseline && jsx(CssBaseline, {}), children] }) }));
-};
-/**
- * Hook zum Zugriff auf den Vibe Theme Context
- */
-const useVibeTheme = () => {
-    const context = useContext(VibeContext);
-    if (context === undefined) {
-        throw new Error("useVibeTheme must be used within a VibeUIProvider");
-    }
-    return context;
+const VibeUIProvider = ({ children }) => {
+    return (jsx(ThemeProvider, { value: vibeTheme, children: children }));
 };
 
-export { VibeUIProvider, useVibeTheme, vibeDarkTheme, vibeDarkThemeOptions, vibePink, vibePurple, vibeTheme, vibeThemeOptions };
+export { VibeUIProvider, vibeColors, vibeTheme };

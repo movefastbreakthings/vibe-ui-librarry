@@ -1,10 +1,9 @@
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 export default [
+    // Main ESM build
     {
         input: 'src/index.ts',
         output: [
@@ -15,31 +14,32 @@ export default [
             },
         ],
         plugins: [
-            peerDepsExternal(),
             resolve(),
-            commonjs(),
             typescript({
                 tsconfig: './tsconfig.json',
-                exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
+                declaration: false,
+                declarationDir: undefined,
             }),
         ],
         external: [
             'react',
             'react-dom',
             'react/jsx-runtime',
-            '@emotion/react',
-            '@emotion/styled',
-            '@mui/material',
-            '@mui/icons-material',
-            /^@mui\//,
+            '@material-tailwind/react',
             /^react\//,
+            /^@material-tailwind\//,
         ],
     },
+    // TypeScript declarations
     {
-        input: 'dist/index.d.ts',
+        input: 'src/index.ts',
         output: [{ file: 'dist/index.d.ts', format: 'esm' }],
         plugins: [dts()],
-        external: [/\.css$/],
+        external: [
+            'react',
+            'react-dom',
+            '@material-tailwind/react',
+            /^@material-tailwind\//,
+        ],
     },
 ];
-

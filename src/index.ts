@@ -1,251 +1,112 @@
-// ============================================================================
-// VIBE UI LIBRARY
-// Eine Material UI basierte Komponenten-Bibliothek mit knalligem Pink-Akzent
-// ============================================================================
+// =============================================================================
+// Vibe Tailwind Library - Main Export
+// =============================================================================
 
-// ---------------------------------------------------------------------------
 // Custom Theme & Provider
-// ---------------------------------------------------------------------------
-export {
-  vibeTheme,
-  vibeDarkTheme,
-  vibeThemeOptions,
-  vibeDarkThemeOptions,
-  vibePink,
-  vibePurple,
-} from "./theme";
-
-export { VibeUIProvider, useVibeTheme } from "./components";
+export { VibeUIProvider } from "./components";
 export type { VibeUIProviderProps } from "./components";
+export { vibeTheme, vibeColors } from "./theme";
 
-// ---------------------------------------------------------------------------
-// Re-export all Material UI Components
-// ---------------------------------------------------------------------------
+// =============================================================================
+// Re-export all Material Tailwind Components
+// =============================================================================
 
-// Layout
+// Core Components
 export {
-  Box,
-  Container,
-  Grid,
-  Stack,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-} from "@mui/material";
-
-// Grid2 must be imported directly: import Grid2 from '@mui/material/Grid2';
-
-// Inputs
-export {
-  Autocomplete,
+  // Buttons
   Button,
-  ButtonGroup,
-  Checkbox,
-  Fab,
   IconButton,
-  Input,
-  InputAdornment,
-  InputBase,
-  InputLabel,
-  FilledInput,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
-  NativeSelect,
-  OutlinedInput,
-  Radio,
-  RadioGroup,
-  Rating,
-  Select,
-  Slider,
-  Switch,
-  TextField,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
+  ButtonGroup,
 
-// Data Display
-export {
+  // Typography
+  Typography,
+
+  // Cards
+  Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
+
+  // Layout
+  Accordion,
+  AccordionBody,
+  AccordionHeader,
+  Collapse,
+  Drawer,
+
+  // Form Elements
+  Input,
+  Textarea,
+  Select,
+  Option,
+  Checkbox,
+  Radio,
+  Switch,
+  Slider,
+
+  // Navigation
+  Navbar,
+  MobileNav,
+  Breadcrumbs,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Tabs,
+  TabsHeader,
+  TabsBody,
+  Tab,
+  TabPanel,
+  Stepper,
+  Step,
+
+  // Feedback
+  Alert,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Popover,
+  PopoverHandler,
+  PopoverContent,
+  Tooltip,
+  Spinner,
+  Progress,
+
+  // Data Display
   Avatar,
-  AvatarGroup,
   Badge,
   Chip,
-  Divider,
-  Icon,
   List,
   ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  ListSubheader,
-  SvgIcon,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+  ListItemPrefix,
+  ListItemSuffix,
+  Timeline,
+  TimelineItem,
+  TimelineConnector,
+  TimelineHeader,
+  TimelineIcon,
+  TimelineBody,
 
-// Feedback
-export {
-  Alert,
-  AlertTitle,
-  Backdrop,
-  CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  LinearProgress,
-  Skeleton,
-  Snackbar,
-  SnackbarContent,
-} from "@mui/material";
-
-// Surfaces
-export {
-  Accordion,
-  AccordionActions,
-  AccordionDetails,
-  AccordionSummary,
-  AppBar,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Paper,
-  Toolbar,
-} from "@mui/material";
-
-// Navigation
-export {
-  BottomNavigation,
-  BottomNavigationAction,
-  Breadcrumbs,
-  Drawer,
-  Link,
-  Menu,
-  MenuItem,
-  MenuList,
-  Pagination,
-  PaginationItem,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Step,
-  StepButton,
-  StepConnector,
-  StepContent,
-  StepIcon,
-  StepLabel,
-  Stepper,
-  Tab,
-  Tabs,
-  TabScrollButton,
-  MobileStepper,
-} from "@mui/material";
-
-// Utils
-export {
-  ClickAwayListener,
-  CssBaseline,
-  GlobalStyles,
-  Modal,
-  NoSsr,
-  Popover,
-  Popper,
-  Portal,
-  TextareaAutosize,
-  useMediaQuery,
-  useScrollTrigger,
-  Zoom,
-  Grow,
-  Slide,
-  Collapse,
-  Fade,
-} from "@mui/material";
-
-// Theming & Styling
-export {
+  // Theme
   ThemeProvider,
-  createTheme,
-  useTheme,
-  styled,
-  alpha,
-  darken,
-  lighten,
-  emphasize,
-  getContrastRatio,
-  useColorScheme,
-} from "@mui/material";
 
-// System
-export { useThemeProps } from "@mui/material";
+  // Rating
+  Rating,
 
-// Types re-exports
-export type {
-  AlertColor,
-  AlertPropsColorOverrides,
-  AutocompleteProps,
-  BadgeProps,
-  BoxProps,
-  ButtonProps,
-  CardProps,
-  CheckboxProps,
-  ChipProps,
-  ContainerProps,
-  DialogProps,
-  DividerProps,
-  DrawerProps,
-  FabProps,
-  FormControlProps,
-  GridProps,
-  IconButtonProps,
-  InputProps,
-  LinearProgressProps,
-  LinkProps,
-  ListProps,
-  ListItemProps,
-  MenuProps,
-  MenuItemProps,
-  ModalProps,
-  PaginationProps,
-  PaperProps,
-  PopoverProps,
-  RadioProps,
-  RatingProps,
-  SelectProps,
-  SliderProps,
-  SnackbarProps,
-  StackProps,
-  StepProps,
-  SwitchProps,
-  TabProps,
-  TabsProps,
-  TableProps,
-  TextFieldProps,
-  Theme,
-  ThemeOptions,
-  ToggleButtonProps,
-  TooltipProps,
-  TypographyProps,
-} from "@mui/material";
+  // Carousel
+  Carousel,
 
-// ---------------------------------------------------------------------------
-// Material Icons - Import directly from @mui/icons-material
-// ---------------------------------------------------------------------------
-// Icons are NOT re-exported to avoid bundle size issues.
-// Import icons directly: import { Favorite, Star } from '@mui/icons-material';
+  // Speed Dial
+  SpeedDial,
+  SpeedDialHandler,
+  SpeedDialContent,
+  SpeedDialAction,
+} from "@material-tailwind/react";
+
+// =============================================================================
+// Note: Icons should be imported separately from @heroicons/react
+// Example:
+//   import { HeartIcon } from '@heroicons/react/24/solid';
+//   import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
+// =============================================================================

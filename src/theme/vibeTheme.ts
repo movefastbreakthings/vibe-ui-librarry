@@ -1,326 +1,377 @@
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+/**
+ * Vibe Theme for Material Tailwind
+ * Primary Color: #ff0080 (Vibrant Pink)
+ * Secondary Color: #9c27b0 (Electric Purple)
+ */
 
-// Knalliges Pink als Hauptakzentfarbe
-const VIBE_PINK = {
-  50: '#fce4ec',
-  100: '#f8bbd9',
-  200: '#f48fb1',
-  300: '#f06292',
-  400: '#ec407a',
-  500: '#ff0080', // Hauptfarbe - knalliges Pink/Magenta
-  600: '#e91e63',
-  700: '#d81b60',
-  800: '#c2185b',
-  900: '#ad1457',
-  A100: '#ff80ab',
-  A200: '#ff4081',
-  A400: '#ff0080',
-  A700: '#c51162',
-};
-
-// Sekundärfarbe - Electric Purple für Kontrast
-const VIBE_PURPLE = {
-  50: '#f3e5f5',
-  100: '#e1bee7',
-  200: '#ce93d8',
-  300: '#ba68c8',
-  400: '#ab47bc',
-  500: '#9c27b0',
-  600: '#8e24aa',
-  700: '#7b1fa2',
-  800: '#6a1b9a',
-  900: '#4a148c',
-  A100: '#ea80fc',
-  A200: '#e040fb',
-  A400: '#d500f9',
-  A700: '#aa00ff',
-};
-
-export const vibeThemeOptions: ThemeOptions = {
-  palette: {
-    primary: {
-      main: VIBE_PINK[500],
-      light: VIBE_PINK[300],
-      dark: VIBE_PINK[700],
-      contrastText: '#ffffff',
+export const vibeTheme = {
+  button: {
+    defaultProps: {
+      color: 'pink',
+      ripple: true,
     },
-    secondary: {
-      main: VIBE_PURPLE[500],
-      light: VIBE_PURPLE[300],
-      dark: VIBE_PURPLE[700],
-      contrastText: '#ffffff',
+    valid: {
+      colors: [
+        'pink',
+        'purple',
+        'white',
+        'blue-gray',
+        'gray',
+        'brown',
+        'deep-orange',
+        'orange',
+        'amber',
+        'yellow',
+        'lime',
+        'light-green',
+        'green',
+        'teal',
+        'cyan',
+        'light-blue',
+        'blue',
+        'indigo',
+        'deep-purple',
+        'red',
+      ],
     },
-    error: {
-      main: '#ff1744',
-    },
-    warning: {
-      main: '#ff9100',
-    },
-    info: {
-      main: '#00b0ff',
-    },
-    success: {
-      main: '#00e676',
-    },
-    background: {
-      default: '#fafafa',
-      paper: '#ffffff',
-    },
-  },
-  typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h1: {
-      fontWeight: 700,
-    },
-    h2: {
-      fontWeight: 700,
-    },
-    h3: {
-      fontWeight: 600,
-    },
-    h4: {
-      fontWeight: 600,
-    },
-    h5: {
-      fontWeight: 600,
-    },
-    h6: {
-      fontWeight: 600,
-    },
-    button: {
-      fontWeight: 600,
-      textTransform: 'none',
-    },
-  },
-  shape: {
-    borderRadius: 12,
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          padding: '10px 24px',
-          boxShadow: 'none',
-          '&:hover': {
-            boxShadow: '0 4px 12px rgba(255, 0, 128, 0.3)',
+    styles: {
+      variants: {
+        filled: {
+          pink: {
+            background: 'bg-[#ff0080]',
+            color: 'text-white',
+            shadow: 'shadow-md shadow-pink-500/20',
+            hover: 'hover:shadow-lg hover:shadow-pink-500/40',
+            focus: 'focus:opacity-[0.85] focus:shadow-none',
+            active: 'active:opacity-[0.85] active:shadow-none',
+          },
+          purple: {
+            background: 'bg-[#9c27b0]',
+            color: 'text-white',
+            shadow: 'shadow-md shadow-purple-500/20',
+            hover: 'hover:shadow-lg hover:shadow-purple-500/40',
+            focus: 'focus:opacity-[0.85] focus:shadow-none',
+            active: 'active:opacity-[0.85] active:shadow-none',
           },
         },
-        containedPrimary: {
-          background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-          '&:hover': {
-            background: `linear-gradient(135deg, ${VIBE_PINK[400]} 0%, ${VIBE_PINK[500]} 100%)`,
+        outlined: {
+          pink: {
+            border: 'border border-[#ff0080]',
+            color: 'text-[#ff0080]',
+            hover: 'hover:opacity-75',
+            focus: 'focus:ring focus:ring-pink-200',
+            active: 'active:opacity-[0.85]',
+          },
+          purple: {
+            border: 'border border-[#9c27b0]',
+            color: 'text-[#9c27b0]',
+            hover: 'hover:opacity-75',
+            focus: 'focus:ring focus:ring-purple-200',
+            active: 'active:opacity-[0.85]',
+          },
+        },
+        gradient: {
+          pink: {
+            background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+            color: 'text-white',
+            shadow: 'shadow-md shadow-pink-500/20',
+            hover: 'hover:shadow-lg hover:shadow-pink-500/40',
+            active: 'active:opacity-[0.85]',
+          },
+          purple: {
+            background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+            color: 'text-white',
+            shadow: 'shadow-md shadow-purple-500/20',
+            hover: 'hover:shadow-lg hover:shadow-purple-500/40',
+            active: 'active:opacity-[0.85]',
+          },
+        },
+        text: {
+          pink: {
+            color: 'text-[#ff0080]',
+            hover: 'hover:bg-pink-500/10',
+            active: 'active:bg-pink-500/30',
+          },
+          purple: {
+            color: 'text-[#9c27b0]',
+            hover: 'hover:bg-purple-500/10',
+            active: 'active:bg-purple-500/30',
           },
         },
       },
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 16,
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+  },
+  card: {
+    defaultProps: {
+      variant: 'filled',
+      color: 'white',
+      shadow: true,
+    },
+    styles: {
+      base: {
+        initial: {
+          borderRadius: 'rounded-xl',
         },
       },
     },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-        },
-        colorPrimary: {
-          background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-        },
-      },
+  },
+  input: {
+    defaultProps: {
+      color: 'pink',
     },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            borderRadius: 8,
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: VIBE_PINK[500],
-              borderWidth: 2,
+    styles: {
+      variants: {
+        outlined: {
+          pink: {
+            input: {
+              borderColor: 'border-blue-gray-200',
+              borderColorFocused: 'focus:border-[#ff0080]',
+            },
+            label: {
+              color: 'text-blue-gray-400 peer-focus:text-[#ff0080]',
+              after: {
+                borderColor: 'after:border-[#ff0080]',
+              },
+            },
+          },
+        },
+        standard: {
+          pink: {
+            input: {
+              borderColor: 'border-blue-gray-200',
+              borderColorFocused: 'focus:border-[#ff0080]',
+            },
+            label: {
+              color: 'text-blue-gray-500 peer-focus:text-[#ff0080]',
+              after: {
+                borderColor: 'after:border-[#ff0080]',
+              },
+            },
+          },
+        },
+        static: {
+          pink: {
+            input: {
+              borderColor: 'border-blue-gray-200',
+              borderColorFocused: 'focus:border-[#ff0080]',
+            },
+            label: {
+              color: 'text-blue-gray-500 peer-focus:text-[#ff0080]',
+              after: {
+                borderColor: 'after:border-[#ff0080]',
+              },
             },
           },
         },
       },
     },
-    MuiFab: {
-      styleOverrides: {
-        primary: {
-          background: `linear-gradient(135deg, ${VIBE_PINK[500]} 0%, ${VIBE_PINK[600]} 100%)`,
-          '&:hover': {
-            background: `linear-gradient(135deg, ${VIBE_PINK[400]} 0%, ${VIBE_PINK[500]} 100%)`,
+  },
+  checkbox: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      colors: {
+        pink: {
+          background: 'checked:bg-[#ff0080]',
+          border: 'checked:border-[#ff0080]',
+          before: 'checked:before:bg-[#ff0080]',
+        },
+        purple: {
+          background: 'checked:bg-[#9c27b0]',
+          border: 'checked:border-[#9c27b0]',
+          before: 'checked:before:bg-[#9c27b0]',
+        },
+      },
+    },
+  },
+  switch: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      colors: {
+        pink: {
+          input: 'checked:bg-[#ff0080]',
+          circle: 'peer-checked:border-[#ff0080]',
+          before: 'peer-checked:before:bg-[#ff0080]',
+        },
+        purple: {
+          input: 'checked:bg-[#9c27b0]',
+          circle: 'peer-checked:border-[#9c27b0]',
+          before: 'peer-checked:before:bg-[#9c27b0]',
+        },
+      },
+    },
+  },
+  radio: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      colors: {
+        pink: {
+          color: 'text-[#ff0080]',
+          border: 'checked:border-[#ff0080]',
+          before: 'checked:before:bg-[#ff0080]',
+        },
+        purple: {
+          color: 'text-[#9c27b0]',
+          border: 'checked:border-[#9c27b0]',
+          before: 'checked:before:bg-[#9c27b0]',
+        },
+      },
+    },
+  },
+  chip: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      variants: {
+        filled: {
+          pink: {
+            background: 'bg-[#ff0080]',
+            color: 'text-white',
+          },
+          purple: {
+            background: 'bg-[#9c27b0]',
+            color: 'text-white',
+          },
+        },
+        gradient: {
+          pink: {
+            background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+            color: 'text-white',
+          },
+          purple: {
+            background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+            color: 'text-white',
+          },
+        },
+        outlined: {
+          pink: {
+            border: 'border border-[#ff0080]',
+            color: 'text-[#ff0080]',
+          },
+          purple: {
+            border: 'border border-[#9c27b0]',
+            color: 'text-[#9c27b0]',
+          },
+        },
+        ghost: {
+          pink: {
+            background: 'bg-[#ff0080]/20',
+            color: 'text-[#ff0080]',
+          },
+          purple: {
+            background: 'bg-[#9c27b0]/20',
+            color: 'text-[#9c27b0]',
           },
         },
       },
     },
-    MuiSwitch: {
-      styleOverrides: {
-        switchBase: {
-          '&.Mui-checked': {
-            color: VIBE_PINK[500],
-            '& + .MuiSwitch-track': {
-              backgroundColor: VIBE_PINK[500],
-            },
+  },
+  spinner: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      colors: {
+        pink: {
+          color: 'text-[#ff0080]',
+        },
+        purple: {
+          color: 'text-[#9c27b0]',
+        },
+      },
+    },
+  },
+  progress: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      colors: {
+        pink: {
+          background: 'bg-[#ff0080]',
+        },
+        purple: {
+          background: 'bg-[#9c27b0]',
+        },
+      },
+    },
+  },
+  tabs: {
+    defaultProps: {},
+    styles: {
+      base: {
+        tab: {
+          initial: {
+            color: 'text-blue-gray-900',
           },
         },
-      },
-    },
-    MuiCheckbox: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: VIBE_PINK[500],
-          },
-        },
-      },
-    },
-    MuiRadio: {
-      styleOverrides: {
-        root: {
-          '&.Mui-checked': {
-            color: VIBE_PINK[500],
-          },
-        },
-      },
-    },
-    MuiSlider: {
-      styleOverrides: {
-        root: {
-          color: VIBE_PINK[500],
-        },
-        thumb: {
-          '&:hover, &.Mui-focusVisible': {
-            boxShadow: `0 0 0 8px rgba(255, 0, 128, 0.16)`,
-          },
-        },
-      },
-    },
-    MuiLinearProgress: {
-      styleOverrides: {
-        root: {
-          borderRadius: 4,
-        },
-        barColorPrimary: {
-          background: `linear-gradient(90deg, ${VIBE_PINK[500]} 0%, ${VIBE_PURPLE[500]} 100%)`,
-        },
-      },
-    },
-    MuiCircularProgress: {
-      styleOverrides: {
-        colorPrimary: {
-          color: VIBE_PINK[500],
-        },
-      },
-    },
-    MuiTabs: {
-      styleOverrides: {
         indicator: {
-          backgroundColor: VIBE_PINK[500],
-          height: 3,
-          borderRadius: 2,
+          bg: 'bg-[#ff0080]',
         },
       },
     },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          '&.Mui-selected': {
-            color: VIBE_PINK[500],
+  },
+  alert: {
+    defaultProps: {
+      color: 'pink',
+    },
+    styles: {
+      variants: {
+        filled: {
+          pink: {
+            background: 'bg-[#ff0080]',
+            color: 'text-white',
+          },
+          purple: {
+            background: 'bg-[#9c27b0]',
+            color: 'text-white',
           },
         },
-      },
-    },
-    MuiLink: {
-      styleOverrides: {
-        root: {
-          color: VIBE_PINK[500],
-          '&:hover': {
-            color: VIBE_PINK[700],
+        gradient: {
+          pink: {
+            background: 'bg-gradient-to-tr from-[#ff0080] to-[#ff6eb4]',
+            color: 'text-white',
+          },
+          purple: {
+            background: 'bg-gradient-to-tr from-[#9c27b0] to-[#ce93d8]',
+            color: 'text-white',
           },
         },
-      },
-    },
-    MuiAlert: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
+        outlined: {
+          pink: {
+            border: 'border border-[#ff0080]',
+            color: 'text-[#ff0080]',
+          },
+          purple: {
+            border: 'border border-[#9c27b0]',
+            color: 'text-[#9c27b0]',
+          },
         },
-      },
-    },
-    MuiDialog: {
-      styleOverrides: {
-        paper: {
-          borderRadius: 20,
-        },
-      },
-    },
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          borderRadius: 8,
-          backgroundColor: 'rgba(0, 0, 0, 0.87)',
-        },
-      },
-    },
-    MuiBadge: {
-      styleOverrides: {
-        colorPrimary: {
-          backgroundColor: VIBE_PINK[500],
+        ghost: {
+          pink: {
+            background: 'bg-[#ff0080]/20',
+            color: 'text-[#ff0080]',
+          },
+          purple: {
+            background: 'bg-[#9c27b0]/20',
+            color: 'text-[#9c27b0]',
+          },
         },
       },
     },
   },
 };
 
-// Dark Theme Variante
-export const vibeDarkThemeOptions: ThemeOptions = {
-  ...vibeThemeOptions,
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: VIBE_PINK[400],
-      light: VIBE_PINK[200],
-      dark: VIBE_PINK[600],
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      main: VIBE_PURPLE[400],
-      light: VIBE_PURPLE[200],
-      dark: VIBE_PURPLE[600],
-      contrastText: '#ffffff',
-    },
-    error: {
-      main: '#ff5252',
-    },
-    warning: {
-      main: '#ffab40',
-    },
-    info: {
-      main: '#40c4ff',
-    },
-    success: {
-      main: '#69f0ae',
-    },
-    background: {
-      default: '#0a0a0a',
-      paper: '#1a1a1a',
-    },
-    text: {
-      primary: '#ffffff',
-      secondary: 'rgba(255, 255, 255, 0.7)',
-    },
-  },
-};
-
-// Erstelle die Themes
-export const vibeTheme = createTheme(vibeThemeOptions);
-export const vibeDarkTheme = createTheme(vibeDarkThemeOptions);
-
-// Export der Pink-Farben für direkten Zugriff
-export const vibePink = VIBE_PINK;
-export const vibePurple = VIBE_PURPLE;
-
-export default vibeTheme;
-
+// Color palette export for documentation
+export const vibeColors = {
+  primary: '#ff0080',
+  secondary: '#9c27b0',
+  primaryLight: '#ff6eb4',
+  secondaryLight: '#ce93d8',
+} as const;

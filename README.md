@@ -1,190 +1,172 @@
-# ✨ Vibe UI Library
+# 🎀 Vibe Tailwind Library
 
-Eine lebendige UI-Library basierend auf [Material UI](https://mui.com/) mit einem knalligen **Pink** (`#ff0080`) als Akzentfarbe.
+A Material Tailwind wrapper with a **vibrant pink theme** (`#ff0080`). Zero configuration needed - just wrap your app and go!
 
-[![npm version](https://img.shields.io/npm/v/vibe-ui-library?style=for-the-badge&color=ff0080)](https://www.npmjs.com/package/vibe-ui-library)
-[![npm downloads](https://img.shields.io/npm/dm/vibe-ui-library?style=for-the-badge&color=ff0080)](https://www.npmjs.com/package/vibe-ui-library)
-![React](https://img.shields.io/badge/React-18%2B-61dafb?style=for-the-badge)
+![Demo](https://img.shields.io/badge/demo-live-ff0080?style=for-the-badge)
+![NPM](https://img.shields.io/badge/npm-vibe--tailwind--library-9c27b0?style=for-the-badge)
 
-## 🚀 Live Demo
+## ✨ Features
 
-**[👉 Demo ansehen](https://movefastbreakthings.github.io/vibe-ui-library/)**
+- 🎨 Pre-configured vibrant pink (`#ff0080`) and electric purple (`#9c27b0`) theme
+- 📦 All Material Tailwind components re-exported
+- 🚀 Zero configuration needed
+- 💪 Full TypeScript support
+- ⚡ ESM-only build (no CommonJS issues)
+
+## 🎨 Color Palette
+
+| Color | Hex | Usage |
+|-------|-----|-------|
+| 🩷 Primary Pink | `#ff0080` | Primary actions, buttons, highlights |
+| 💜 Secondary Purple | `#9c27b0` | Secondary actions, accents |
+| 🌸 Pink Light | `#ff6eb4` | Gradients, hover states |
+| 💟 Purple Light | `#ce93d8` | Gradients, hover states |
 
 ## 📦 Installation
 
 ```bash
-npm install vibe-ui-library @mui/material @mui/icons-material @emotion/react @emotion/styled
+npm install vibe-tailwind-library @material-tailwind/react tailwindcss
 ```
 
-> ⚠️ **Wichtig:** Die MUI Dependencies (`@mui/material`, `@mui/icons-material`, `@emotion/react`, `@emotion/styled`) sind **Peer Dependencies** und müssen mit installiert werden!
+> ⚠️ **Important:** `@material-tailwind/react` and `tailwindcss` are peer dependencies and must be installed separately.
 
-## 🎨 Features
+### From GitHub (Latest)
 
-- 💖 **Knalliges Pink** (`#ff0080`) als Primary Color
-- 💜 **Electric Purple** als Secondary Color
-- 🌓 **Light & Dark Mode** inklusive
-- 📦 **50+ Komponenten** von Material UI
-- 🎯 **Alle MUI Icons** enthalten
-- ⚡ **TypeScript** Support
-- 🎨 **Angepasste Styles** für Buttons, Cards, Chips, etc.
+```bash
+npm install github:yourusername/vibe-tailwind-library @material-tailwind/react tailwindcss
+```
 
-## 🛠️ Verwendung
+## 🚀 Quick Start
 
-### Basic Setup
+### 1. Configure Tailwind CSS
+
+Update your `tailwind.config.js`:
+
+```javascript
+import withMT from '@material-tailwind/react/utils/withMT';
+
+export default withMT({
+  content: [
+    './index.html',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+});
+```
+
+### 2. Wrap Your App
 
 ```tsx
-import { VibeUIProvider, Button, Typography } from 'vibe-ui-library';
+import { VibeUIProvider } from 'vibe-tailwind-library';
 
 function App() {
   return (
     <VibeUIProvider>
-      <Typography variant="h1">Hello Vibe!</Typography>
-      <Button variant="contained">Pink Button</Button>
+      <YourApp />
     </VibeUIProvider>
   );
 }
 ```
 
-### Mit Dark Mode Toggle
+### 3. Use Components
 
 ```tsx
-import { VibeUIProvider, useVibeTheme, IconButton, DarkMode, LightMode } from 'vibe-ui-library';
+import {
+  VibeUIProvider,
+  Button,
+  Card,
+  CardBody,
+  Typography,
+  Input,
+} from 'vibe-tailwind-library';
 
-function ThemeToggle() {
-  const { mode, toggleMode } = useVibeTheme();
-  
+function MyComponent() {
   return (
-    <IconButton onClick={toggleMode}>
-      {mode === 'light' ? <DarkMode /> : <LightMode />}
-    </IconButton>
-  );
-}
-
-function App() {
-  return (
-    <VibeUIProvider defaultMode="light">
-      <ThemeToggle />
-      {/* Dein Content */}
-    </VibeUIProvider>
+    <Card>
+      <CardBody>
+        <Typography variant="h3">Hello Vibe!</Typography>
+        <Input label="Email" color="pink" />
+        <Button color="pink">Submit</Button>
+        <Button color="purple" variant="outlined">Cancel</Button>
+      </CardBody>
+    </Card>
   );
 }
 ```
 
-### Direkter Zugriff auf Farben
+## 🧩 Available Components
+
+All Material Tailwind components are available:
+
+### Layout
+- `Card`, `CardBody`, `CardHeader`, `CardFooter`
+- `Accordion`, `AccordionBody`, `AccordionHeader`
+- `Collapse`, `Drawer`
+
+### Form Elements
+- `Button`, `IconButton`, `ButtonGroup`
+- `Input`, `Textarea`, `Select`, `Option`
+- `Checkbox`, `Radio`, `Switch`, `Slider`
+
+### Navigation
+- `Navbar`, `MobileNav`, `Breadcrumbs`
+- `Menu`, `MenuHandler`, `MenuList`, `MenuItem`
+- `Tabs`, `TabsHeader`, `TabsBody`, `Tab`, `TabPanel`
+- `Stepper`, `Step`
+
+### Feedback
+- `Alert`, `Dialog`, `Popover`, `Tooltip`
+- `Spinner`, `Progress`
+
+### Data Display
+- `Avatar`, `Badge`, `Chip`
+- `List`, `ListItem`, `ListItemPrefix`, `ListItemSuffix`
+- `Timeline`, `TimelineItem`, `TimelineConnector`, `TimelineHeader`, `TimelineIcon`, `TimelineBody`
+- `Typography`, `Rating`, `Carousel`
+
+## 🎯 Icons
+
+Icons should be imported separately from `@heroicons/react`:
 
 ```tsx
-import { vibePink, vibePurple } from 'vibe-ui-library';
+import { HeartIcon } from '@heroicons/react/24/solid';
+import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
 
-// vibePink[500] = '#ff0080' - Hauptfarbe
-// vibePurple[500] = '#9c27b0' - Sekundärfarbe
+<Button color="pink" className="flex items-center gap-2">
+  <HeartIcon className="h-5 w-5" /> Like
+</Button>
 ```
 
-### Theme ohne Provider (Alternative bei Kompatibilitätsproblemen)
+## 🔧 Alternative: Direct ThemeProvider
 
-Falls `VibeUIProvider` nicht funktioniert (z.B. in bestimmten Build-Umgebungen), nutze direkt den MUI `ThemeProvider`:
+If `VibeUIProvider` causes issues, use the theme directly:
 
 ```tsx
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import { vibeTheme, vibeDarkTheme } from 'vibe-ui-library';
+import { ThemeProvider } from '@material-tailwind/react';
+import { vibeTheme } from 'vibe-tailwind-library';
 
 function App() {
   return (
-    <ThemeProvider theme={vibeTheme}>
-      <CssBaseline />
-      {/* Dein Content */}
+    <ThemeProvider value={vibeTheme}>
+      <YourApp />
     </ThemeProvider>
   );
 }
 ```
 
-> ⚠️ **Hinweis:** Bei dieser Variante steht der `useVibeTheme()` Hook für Dark Mode Toggle nicht zur Verfügung.
+## 📖 Live Demo
 
-## 📚 Verfügbare Exports
+Check out the live demo: [GitHub Pages Demo](https://yourusername.github.io/vibe-tailwind-library/)
 
-### Komponenten
-Alle Material UI Komponenten werden re-exportiert:
-- Layout: `Box`, `Container`, `Grid`, `Stack`, etc.
-- Inputs: `Button`, `TextField`, `Checkbox`, `Switch`, `Slider`, etc.
-- Data Display: `Typography`, `Chip`, `Avatar`, `Badge`, `Table`, etc.
-- Feedback: `Alert`, `Dialog`, `Snackbar`, `Progress`, etc.
-- Surfaces: `Card`, `Paper`, `AppBar`, `Accordion`, etc.
-- Navigation: `Tabs`, `Menu`, `Breadcrumbs`, `Pagination`, etc.
+## 🤖 AI Integration
 
-### Icons
-Alle Material Icons sind verfügbar:
-```tsx
-import { Favorite, Star, Home, Settings } from 'vibe-ui-library';
-```
+See [AI_PROMPT.md](./AI_PROMPT.md) for a prompt you can give to AI tools (ChatGPT, Claude, Cursor, v0.dev) to help them use this library correctly.
 
-### Theme
-```tsx
-import { 
-  vibeTheme,        // Light Theme
-  vibeDarkTheme,    // Dark Theme
-  vibePink,         // Pink Farbpalette
-  vibePurple        // Purple Farbpalette
-} from 'vibe-ui-library';
-```
-
-## 🎨 Farbpalette
-
-### Primary (Pink)
-| Shade | Hex |
-|-------|-----|
-| 300 | `#f06292` |
-| 400 | `#ec407a` |
-| **500** | **`#ff0080`** |
-| 600 | `#e91e63` |
-| 700 | `#d81b60` |
-
-### Secondary (Purple)
-| Shade | Hex |
-|-------|-----|
-| 300 | `#ba68c8` |
-| 400 | `#ab47bc` |
-| **500** | **`#9c27b0`** |
-| 600 | `#8e24aa` |
-| 700 | `#7b1fa2` |
-
-## 🤖 AI/KI-Tools Integration
-
-Verwende den mitgelieferten Prompt, damit KI-Tools (ChatGPT, Claude, Cursor, etc.) automatisch diese Library nutzen:
-
-**[📋 AI_PROMPT.md](./AI_PROMPT.md)** - Kopiere diesen als System-Prompt oder Kontext
-
-### Kurz-Prompt (zum Kopieren)
-
-```
-Verwende die vibe-ui-library (basiert auf Material UI mit Pink-Theme).
-Install: npm install vibe-ui-library @mui/material @mui/icons-material @emotion/react @emotion/styled
-Import: import { VibeUIProvider, Button, Typography, Box, ... } from 'vibe-ui-library'
-Icons: import { Favorite, Star, Home, ... } from '@mui/icons-material'
-Wrapper: <VibeUIProvider>{children}</VibeUIProvider>
-Primary Color: Pink (#ff0080)
-Kein eigenes CSS - nutze sx prop!
-```
-
-## 🏃 Demo lokal starten
-
-```bash
-# Repository klonen
-git clone https://github.com/movefastbreakthings/vibe-ui-library.git
-cd vibe-ui-library
-
-# Dependencies installieren
-npm install
-
-# Example starten
-cd example
-npm install
-npm run dev
-```
-
-## 📄 Lizenz
+## 📝 License
 
 MIT
-
----
-
-Made with 💖 by the Vibe Team
-

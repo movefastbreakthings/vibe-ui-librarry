@@ -1,9 +1,1 @@
-export {
-  vibeTheme,
-  vibeDarkTheme,
-  vibeThemeOptions,
-  vibeDarkThemeOptions,
-  vibePink,
-  vibePurple,
-} from './vibeTheme';
-
+export { vibeTheme, vibeColors } from './vibeTheme';

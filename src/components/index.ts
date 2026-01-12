@@ -1,3 +1,2 @@
-export { VibeUIProvider, useVibeTheme } from './VibeProvider';
-export type { VibeUIProviderProps } from './VibeProvider';
-
+export { VibeUIProvider } from './VibeUIProvider';
+export type { VibeUIProviderProps } from './VibeUIProvider';
