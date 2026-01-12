@@ -195,7 +195,7 @@ function App() {
 
 ## 📖 Live Demo
 
-Check out the live demo: [GitHub Pages Demo](https://yourusername.github.io/vibe-tailwind-library/)
+Check out the live demo: [GitHub Pages Demo](https://movefastbreakthings.github.io/vibe-tailwind-library/)
 
 ## 🤖 AI Integration
 
