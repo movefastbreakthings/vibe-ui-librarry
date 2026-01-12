@@ -15,9 +15,6 @@ import {
   Progress,
   Avatar,
   Badge,
-  Tabs,
-  TabsHeader,
-  Tab,
 } from "vibe-tailwind-library";
 import {
   HeartIcon,
