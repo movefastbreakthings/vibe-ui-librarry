@@ -1,9 +1,3 @@
-# AI Prompt for Vibe Tailwind Library
-
-Copy this prompt and give it to AI tools (ChatGPT, Claude, Cursor, v0.dev) when building UIs:
-
----
-
 ## Prompt
 
 You are building a React application using **vibe-tailwind-library**, a Material Tailwind wrapper with a vibrant pink theme. Use the package from github:movefastbreakthings/vibe-ui-library.

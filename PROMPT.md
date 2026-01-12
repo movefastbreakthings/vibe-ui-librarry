@@ -31,6 +31,7 @@ vibe-tailwind-library/
 ### 2. Technische Anforderungen
 
 #### package.json
+
 ```json
 {
   "name": "vibe-tailwind-library",
@@ -53,12 +54,14 @@ vibe-tailwind-library/
 }
 ```
 
-**WICHTIG:** 
+**WICHTIG:**
+
 - Prüfe die aktuelle Version von `@material-tailwind/react` mit `npm view @material-tailwind/react version`
 - Nutze die neueste Version in den peerDependencies
 - Alle Dependencies als **peerDependencies** deklarieren (nicht dependencies!)
 
 #### rollup.config.js
+
 ```javascript
 // NUR ESM exportieren (kein CommonJS!)
 // Das vermeidet "createContext is not a function" Fehler in Next.js/Vercel
@@ -82,6 +85,7 @@ external: [
 ### 3. Theme Konfiguration
 
 Erstelle ein Custom Theme mit:
+
 - **Primary Color:** `#ff0080` (Knalliges Pink)
 - **Secondary Color:** `#9c27b0` (Electric Purple)
 - Angepasste Border-Radius, Schatten, Typography
@@ -89,23 +93,22 @@ Erstelle ein Custom Theme mit:
 ### 4. VibeUIProvider
 
 ```tsx
-import { ThemeProvider } from '@material-tailwind/react';
-import { vibeTheme } from '../theme';
+import { ThemeProvider } from "@material-tailwind/react";
+import { vibeTheme } from "../theme";
 
 export const VibeUIProvider = ({ children }) => (
-  <ThemeProvider value={vibeTheme}>
-    {children}
-  </ThemeProvider>
+  <ThemeProvider value={vibeTheme}>{children}</ThemeProvider>
 );
 ```
 
 ### 5. Re-Exports
 
 In `src/index.ts` alle Material Tailwind Komponenten re-exportieren:
+
 ```typescript
 // Custom Theme & Provider
-export { VibeUIProvider } from './components';
-export { vibeTheme } from './theme';
+export { VibeUIProvider } from "./components";
+export { vibeTheme } from "./theme";
 
 // Re-export all Material Tailwind Components
 export {
@@ -119,12 +122,13 @@ export {
   Checkbox,
   Switch,
   // ... alle anderen Komponenten
-} from '@material-tailwind/react';
+} from "@material-tailwind/react";
 ```
 
 ### 6. Example Projekt
 
 Erstelle ein Vite + React Projekt in `/example` das:
+
 - Die Library als lokale Dependency nutzt (`"vibe-tailwind-library": "file:.."`)
 - Eine Demo-Seite mit verschiedenen Komponenten zeigt
 - Das Pink-Theme demonstriert
@@ -132,6 +136,7 @@ Erstelle ein Vite + React Projekt in `/example` das:
 ### 7. GitHub Pages Deployment
 
 `.github/workflows/deploy.yml`:
+
 ```yaml
 name: Deploy Demo to GitHub Pages
 on:
@@ -144,7 +149,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       - run: npm install
       - run: npm run build
       - run: cd example && npm install && npm run build
@@ -164,6 +169,7 @@ jobs:
 ### 8. Dokumentation
 
 #### README.md
+
 - Installation: `npm install vibe-tailwind-library @material-tailwind/react tailwindcss`
 - Peer Dependencies Warnung
 - Verwendungsbeispiele
@@ -171,7 +177,9 @@ jobs:
 - Farbpalette
 
 #### AI_PROMPT.md
+
 Ein Prompt für KI-Tools (ChatGPT, Claude, Cursor, v0.dev), der erklärt:
+
 - Wie die Library zu verwenden ist
 - Welche Komponenten verfügbar sind
 - Dass KEINE eigenen Styles erstellt werden sollen
@@ -188,19 +196,19 @@ Ein Prompt für KI-Tools (ChatGPT, Claude, Cursor, v0.dev), der erklärt:
 3. **Alle Dependencies als peerDependencies** - Die Library soll keine eigenen Versionen bundlen
 
 4. **Icons separat importieren** - Icons NICHT re-exportieren, stattdessen dokumentieren:
+
    ```tsx
    // Icons direkt importieren von:
-   import { HeartIcon } from '@heroicons/react/24/solid';
+   import { HeartIcon } from "@heroicons/react/24/solid";
    ```
 
 5. **ThemeProvider Alternative dokumentieren** - Falls VibeUIProvider nicht funktioniert:
+
    ```tsx
-   import { ThemeProvider } from '@material-tailwind/react';
-   import { vibeTheme } from 'vibe-tailwind-library';
-   
-   <ThemeProvider value={vibeTheme}>
-     {children}
-   </ThemeProvider>
+   import { ThemeProvider } from "@material-tailwind/react";
+   import { vibeTheme } from "vibe-tailwind-library";
+
+   <ThemeProvider value={vibeTheme}>{children}</ThemeProvider>;
    ```
 
 6. **Neueste Versionen nutzen** - Immer mit `npm view PACKAGE version` die aktuelle Version prüfen
@@ -210,7 +218,12 @@ Ein Prompt für KI-Tools (ChatGPT, Claude, Cursor, v0.dev), der erklärt:
 Nach Fertigstellung sollte die Library so nutzbar sein:
 
 ```tsx
-import { VibeUIProvider, Button, Card, Typography } from 'vibe-tailwind-library';
+import {
+  VibeUIProvider,
+  Button,
+  Card,
+  Typography,
+} from "vibe-tailwind-library";
 
 function App() {
   return (
@@ -227,4 +240,3 @@ function App() {
 ## Referenz
 
 Diese Anleitung basiert auf dem Projekt [vibe-ui-library](https://github.com/movefastbreakthings/vibe-ui-library), das dasselbe für Material UI implementiert.
-
