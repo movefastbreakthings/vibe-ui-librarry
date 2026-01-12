@@ -1,12 +1,53 @@
-# AI Prompt for Vibe Tailwind Library
-
-Copy this prompt and give it to AI tools (ChatGPT, Claude, Cursor, v0.dev) when building UIs:
-
----
-
 ## Prompt
 
 You are building a React application using **vibe-tailwind-library**, a Material Tailwind wrapper with a vibrant pink theme. Use the package from github:movefastbreakthings/vibe-ui-library.
+
+### ⚠️ Critical Setup Requirements
+
+**React 18 is REQUIRED** - This library does NOT work with React 19!
+
+```bash
+# Install with legacy peer deps and React 18
+npm install react@18 react-dom@18 @types/react@18 @types/react-dom@18 --legacy-peer-deps
+npm install vibe-tailwind-library@github:movefastbreakthings/vibe-ui-library @material-tailwind/react @heroicons/react --legacy-peer-deps
+npm install -D tailwindcss@3 postcss autoprefixer --legacy-peer-deps
+```
+
+**Vite Config** - Add React deduplication to prevent "Invalid hook call" errors:
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    dedupe: ["react", "react-dom"],
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
+  },
+});
+```
+
+**Tailwind Config** - Use Material Tailwind's withMT wrapper:
+
+```js
+// tailwind.config.js
+import withMT from "@material-tailwind/react/utils/withMT";
+
+export default withMT({
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: { extend: {} },
+  plugins: [],
+});
+```
 
 ### Key Rules
 

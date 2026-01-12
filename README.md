@@ -15,12 +15,12 @@ A Material Tailwind wrapper with a **vibrant pink theme** (`#ff0080`). Zero conf
 
 ## 🎨 Color Palette
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| 🩷 Primary Pink | `#ff0080` | Primary actions, buttons, highlights |
-| 💜 Secondary Purple | `#9c27b0` | Secondary actions, accents |
-| 🌸 Pink Light | `#ff6eb4` | Gradients, hover states |
-| 💟 Purple Light | `#ce93d8` | Gradients, hover states |
+| Color               | Hex       | Usage                                |
+| ------------------- | --------- | ------------------------------------ |
+| 🩷 Primary Pink      | `#ff0080` | Primary actions, buttons, highlights |
+| 💜 Secondary Purple | `#9c27b0` | Secondary actions, accents           |
+| 🌸 Pink Light       | `#ff6eb4` | Gradients, hover states              |
+| 💟 Purple Light     | `#ce93d8` | Gradients, hover states              |
 
 ## 📦 Installation
 
@@ -43,14 +43,14 @@ npm install github:yourusername/vibe-tailwind-library @material-tailwind/react t
 Update your `tailwind.config.js`:
 
 ```javascript
-import withMT from '@material-tailwind/react/utils/withMT';
+import withMT from "@material-tailwind/react/utils/withMT";
 
 export default withMT({
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}',
-    './node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -62,7 +62,7 @@ export default withMT({
 ### 2. Wrap Your App
 
 ```tsx
-import { VibeUIProvider } from 'vibe-tailwind-library';
+import { VibeUIProvider } from "vibe-tailwind-library";
 
 function App() {
   return (
@@ -83,7 +83,7 @@ import {
   CardBody,
   Typography,
   Input,
-} from 'vibe-tailwind-library';
+} from "vibe-tailwind-library";
 
 function MyComponent() {
   return (
@@ -92,7 +92,9 @@ function MyComponent() {
         <Typography variant="h3">Hello Vibe!</Typography>
         <Input label="Email" color="pink" />
         <Button color="pink">Submit</Button>
-        <Button color="purple" variant="outlined">Cancel</Button>
+        <Button color="purple" variant="outlined">
+          Cancel
+        </Button>
       </CardBody>
     </Card>
   );
@@ -104,26 +106,31 @@ function MyComponent() {
 All Material Tailwind components are available:
 
 ### Layout
+
 - `Card`, `CardBody`, `CardHeader`, `CardFooter`
 - `Accordion`, `AccordionBody`, `AccordionHeader`
 - `Collapse`, `Drawer`
 
 ### Form Elements
+
 - `Button`, `IconButton`, `ButtonGroup`
 - `Input`, `Textarea`, `Select`, `Option`
 - `Checkbox`, `Radio`, `Switch`, `Slider`
 
 ### Navigation
+
 - `Navbar`, `MobileNav`, `Breadcrumbs`
 - `Menu`, `MenuHandler`, `MenuList`, `MenuItem`
 - `Tabs`, `TabsHeader`, `TabsBody`, `Tab`, `TabPanel`
 - `Stepper`, `Step`
 
 ### Feedback
+
 - `Alert`, `Dialog`, `Popover`, `Tooltip`
 - `Spinner`, `Progress`
 
 ### Data Display
+
 - `Avatar`, `Badge`, `Chip`
 - `List`, `ListItem`, `ListItemPrefix`, `ListItemSuffix`
 - `Timeline`, `TimelineItem`, `TimelineConnector`, `TimelineHeader`, `TimelineIcon`, `TimelineBody`
@@ -134,12 +141,12 @@ All Material Tailwind components are available:
 Icons should be imported separately from `@heroicons/react`:
 
 ```tsx
-import { HeartIcon } from '@heroicons/react/24/solid';
-import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
+import { HeartIcon } from "@heroicons/react/24/solid";
+import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 
 <Button color="pink" className="flex items-center gap-2">
   <HeartIcon className="h-5 w-5" /> Like
-</Button>
+</Button>;
 ```
 
 ## 🔧 Alternative: Direct ThemeProvider
@@ -147,8 +154,8 @@ import { HeartIcon as HeartIconOutline } from '@heroicons/react/24/outline';
 If `VibeUIProvider` causes issues, use the theme directly:
 
 ```tsx
-import { ThemeProvider } from '@material-tailwind/react';
-import { vibeTheme } from 'vibe-tailwind-library';
+import { ThemeProvider } from "@material-tailwind/react";
+import { vibeTheme } from "vibe-tailwind-library";
 
 function App() {
   return (
@@ -165,7 +172,7 @@ Check out the live demo: [GitHub Pages Demo](https://yourusername.github.io/vibe
 
 ## 🤖 AI Integration
 
-See [AI_PROMPT.md](./AI_PROMPT.md) for a prompt you can give to AI tools (ChatGPT, Claude, Cursor, v0.dev) to help them use this library correctly.
+See [AGENTS.md](./AGENTS.md) for a prompt you can give to AI tools (ChatGPT, Claude, Cursor, v0.dev) to help them use this library correctly.
 
 ## 📝 License
 
