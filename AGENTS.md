@@ -13,7 +13,11 @@ npm install vibe-tailwind-library@github:movefastbreakthings/vibe-ui-library @ma
 npm install -D tailwindcss@3 postcss autoprefixer --legacy-peer-deps
 ```
 
-**Vite Config** - Add React deduplication to prevent "Invalid hook call" errors:
+### Bundler Configuration
+
+Add React deduplication to prevent "Invalid hook call" errors:
+
+**Vite:**
 
 ```ts
 // vite.config.ts
@@ -29,6 +33,40 @@ export default defineConfig({
     include: ["react", "react-dom"],
   },
 });
+```
+
+**Webpack (Create React App / custom):**
+
+```js
+// webpack.config.js or craco.config.js
+module.exports = {
+  resolve: {
+    alias: {
+      react: require.resolve("react"),
+      "react-dom": require.resolve("react-dom"),
+    },
+  },
+};
+```
+
+**Next.js:**
+
+```js
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  transpilePackages: ["vibe-ui-library", "@material-tailwind/react"],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: require.resolve("react"),
+      "react-dom": require.resolve("react-dom"),
+    };
+    return config;
+  },
+};
+
+module.exports = nextConfig;
 ```
 
 **Tailwind Config** - Use Material Tailwind's withMT wrapper:
@@ -54,7 +92,11 @@ export default withMT({
 1. **DO NOT create custom styles** - Use only the pre-built components from the library
 2. **Always wrap your app** with `VibeUIProvider`
 3. **Use `color="pink"` or `color="purple"`** for themed components
-4. **Import icons separately** from `@heroicons/react`
+4. **⚠️ Icons are NOT included in this library!** Import them from `@heroicons/react`:
+   ```tsx
+   import { HeartIcon } from "@heroicons/react/24/solid";
+   import { HeartIcon as HeartOutline } from "@heroicons/react/24/outline";
+   ```
 
 ### Setup
 
@@ -146,12 +188,13 @@ function ContactForm() {
 - `size="md"` (default)
 - `size="lg"`
 
-### DO NOT
+### ❌ DO NOT
 
 - ❌ Create custom CSS for colors or styles
-- ❌ Import icons from vibe-tailwind-library
+- ❌ **NEVER import icons from vibe-tailwind-library** - They don't exist there!
 - ❌ Use Tailwind color classes like `bg-pink-500` for themed elements
 - ❌ Skip the VibeUIProvider wrapper
+- ❌ Use React 19 (only React 18 is supported)
 
 ### DO
 

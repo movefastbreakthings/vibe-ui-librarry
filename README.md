@@ -13,6 +13,33 @@ A Material Tailwind wrapper with a **vibrant pink theme** (`#ff0080`). Zero conf
 - 💪 Full TypeScript support
 - ⚡ ESM-only build (no CommonJS issues)
 
+---
+
+## 🤖 Schnellstart mit AI
+
+**Kopiere diesen Prompt und starte sofort durch:**
+
+```
+Erstelle eine [Landingpage / App / Dashboard / Portfolio] für [Sneakers / Kaffeemarke / SaaS Startup / ...].
+
+Nutze das npm package 'vibe-ui-library'.
+
+Kopiere die AGENTS.md aus dem Repository als Context in dieses Projekt und befolge die Anweisungen dort.
+```
+
+**Oder noch einfacher - füge diese Regel zu deinem AI-Tool hinzu:**
+
+> Nutze das Package `vibe-ui-library` von `github:movefastbreakthings/vibe-ui-library` und befolge die Anweisungen in der [AGENTS.md](./AGENTS.md).
+
+Die `AGENTS.md` enthält alle wichtigen Regeln für AI-Tools:
+
+- ✅ Welche Komponenten verfügbar sind
+- ✅ Wie die Farben (`color="pink"` / `color="purple"`) genutzt werden
+- ✅ Wie Icons importiert werden (`@heroicons/react`)
+- ✅ Setup-Anweisungen für Vite + Tailwind
+
+---
+
 ## 🎨 Color Palette
 
 | Color               | Hex       | Usage                                |
